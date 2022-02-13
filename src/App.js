@@ -5,8 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function App() {
-  const [word, setWord] = useState(null);
-  const [audio, setAudio] = useState("");
+  const [word, setWord] = useState();
+  const [audio, setAudio] = useState();
   const [meaning, setMeaning] = useState([]);
   const [all, setAll] = useState([]);
 
@@ -18,16 +18,16 @@ function App() {
       setMeaning(data.data);
       setAll(data.data[0]);
       const url = meaning[0].phonetics[0].audio;
-      // const audioUrl = url.replace("//ssl.", "https://");
       setAudio(url);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
   useEffect(() => {
     getData();
   }, [word]);
 
+  console.log(word)
   const Search = () => {
     getData();
     setWord("");
@@ -41,6 +41,7 @@ function App() {
           <input
             type="text"
             value={word}
+            onKeyPress={(e) => e.key === 'Enter' && Search()}
             onChange={(e) => setWord(e.target.value)}
           />
           <button className="searchbtn" onClick={Search}>
@@ -52,7 +53,13 @@ function App() {
         {word === "" ? (
           <Home audio={audio} all={all} meaning={meaning} />
         ) : (
-          <strong style={{ textAlign: "center", display: "block",lineHeight:'40px' }}>
+          <strong
+            style={{
+              textAlign: "center",
+              display: "block",
+              lineHeight: "40px",
+            }}
+          >
             Facts are not science - as dictionary is not literature.
           </strong>
         )}

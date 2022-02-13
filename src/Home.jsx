@@ -7,9 +7,6 @@ import { motion } from "framer-motion";
 
 
 const Home = ({ audio, all, meaning }) => {
-  console.log(meaning);
-  console.log(all);
-  console.log(audio);
   return (
     <motion.div className="main"
     initial={{ opacity: 0, y: "100px" }}

@@ -75,6 +75,15 @@ input {
   box-shadow: 0px 0px 5px 0px #dbe9ee;
 }
 
+.synonym__list{
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.synonym__list::-webkit-scrollbar {
+  display: none;
+}
+
 .synonym__list,.antonym__list{
   border-radius: 10px;
   display: flex;
